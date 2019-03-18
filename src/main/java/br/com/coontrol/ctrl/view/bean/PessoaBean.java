@@ -31,12 +31,11 @@ public class PessoaBean {
 	}
 	
 	public void cadastrarPessoa() {
+		FacesContext context = FacesContext.getCurrentInstance();
 		pessoaService.cadastrarPessoa(pessoa);
+		context.addMessage(null, new FacesMessage("Sucesso!",  "Cadastro da pessoa '" + pessoa.getNome() + "' foi concluído!") );
 		limparFormulario();
 		atualizarListaPessoas();
-		FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Successful",  "Your message: " + "Tudo certo") );
-        context.addMessage(null, new FacesMessage("Second Message", "Additional Message Detail"));
 	}
 	
 	public void limparFormulario() {

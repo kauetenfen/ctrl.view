@@ -31,10 +31,9 @@
 	        
 	        
 	        <h:outputText value="Data de Nascimento: " />
-<!-- 	        <p:calendar id="inline" value="#{pessoaBean.pessoa.dataNascimento}" showOn="button" required="true" requiredMessage="O campo 'data de Nascimento' é obrigatório"/> -->
 			<p:calendar id="mask" value="#{pessoaBean.pessoa.dataNascimento}" pattern="dd/MM/yyyy" mask="true" required="true" requiredMessage="O campo 'data de Nascimento' é obrigatório"/>
 			
-			<p:commandButton id="submit" value="Salvar" actionListener="#{pessoaBean.cadastrarPessoa}" update="listaPessoas painelCadastro"/>
+			<p:commandButton id="submit" value="Salvar" actionListener="#{pessoaBean.cadastrarPessoa}" update="listaPessoas painelCadastro growl"/>
 			 
 	      </h:panelGrid>
 	    </p:panel>
