@@ -8,24 +8,30 @@
 
 <h:head>
   <title>Login</title>
-  <h:outputStylesheet name="/css/styles.css" />
+  <style type="text/css">
+	#imgpos {
+		position:absolute;
+		left:50%;
+		top:30%;
+		margin-left:-110px;
+		margin-top:-40px;
+		}
+	</style>
 </h:head>
 
 <h:body>
   <h:form prependId="false">
-
+	<div id="imgpos">
+	<img src="/images/logo.png" />
     <p:panelGrid columns="1" styleClass="ui-fluid center ui-noborder">
-      <h2>Login</h2>
-
-      <p:outputLabel value="Usuario e/ou senha incorretos!" styleClass="red"
-        rendered="${!empty param['error']}" />
+      <p:outputLabel value="Usuario e/ou senha incorretos!" styleClass="red" rendered="${!empty param['error']}" />
 
       <p:inputText id="username" placeholder="Usuário" />
       <p:password id="password" placeholder="Senha" />
 
       <p:commandButton value="Login" ajax="false" />
     </p:panelGrid>
-
+	</div>
   </h:form>
 </h:body>
 </html>

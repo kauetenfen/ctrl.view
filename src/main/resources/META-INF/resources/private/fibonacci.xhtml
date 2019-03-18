@@ -16,7 +16,7 @@
 	<ui:define name="content">
 		<h:form id="fibonacciForm">
 		<p:growl id="growl" showDetail="true" sticky="true" />  
-		    <p:panel header="Consulta Fibonacci">
+		    <p:panel header="Consulta Fibonacci" id="painelCadastro">
 		      <h:panelGrid columns="2" cellpadding="4">
 		        <h:outputText value="Inicio: " />
 		        <p:inputNumber id="nome" value="#{fibonacciBean.inicio}"  decimalPlaces="0" required="true" requiredMessage="O campo 'Inicio' é obrigatório"/>
@@ -24,7 +24,7 @@
 		        <h:outputText value="Quantidade: " />
 		        <p:inputNumber id="sexo" value="#{fibonacciBean.quantidade}"  decimalPlaces="0" required="true" requiredMessage="O campo 'Quantidade' é obrigatório"/>
 		        
-		        <p:commandButton id="submit" value="Calcular" actionListener="#{fibonacciBean.obterSequenciaFibonacci()}" update="panelSequencia" />
+		        <p:commandButton id="submit" value="Calcular" actionListener="#{fibonacciBean.obterSequenciaFibonacci()}" update="panelSequencia painelCadastro" />
 		      </h:panelGrid>
 		    </p:panel>
 		    		    

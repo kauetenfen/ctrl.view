@@ -18,7 +18,7 @@
 	
 	<h:form id="pessoaForm">
 		<p:growl id="growl" showDetail="true" sticky="true" />
-	    <p:panel header="Cadastro pessoa">
+	    <p:panel header="Cadastro pessoa" id="painelCadastro">
 	      <h:panelGrid columns="2" cellpadding="4">
 	        <h:outputText value="Nome: " />
 	        <p:inputText id="nome" value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="O campo 'nome' é obrigatório"/>
@@ -31,15 +31,17 @@
 	        
 	        
 	        <h:outputText value="Data de Nascimento: " />
-	        <p:calendar id="inline" value="#{pessoaBean.pessoa.dataNascimento}" showOn="button" required="true" requiredMessage="O campo 'data de Nascimento' é obrigatório"/>
-			 
-			 <p:commandButton id="submit" value="Salvar" actionListener="#{pessoaBean.cadastrarPessoa}" update="listaPessoas"/>
+<!-- 	        <p:calendar id="inline" value="#{pessoaBean.pessoa.dataNascimento}" showOn="button" required="true" requiredMessage="O campo 'data de Nascimento' é obrigatório"/> -->
+			<p:calendar id="mask" value="#{pessoaBean.pessoa.dataNascimento}" pattern="dd/MM/yyyy" mask="true" required="true" requiredMessage="O campo 'data de Nascimento' é obrigatório"/>
+			
+			<p:commandButton id="submit" value="Salvar" actionListener="#{pessoaBean.cadastrarPessoa}" update="listaPessoas painelCadastro"/>
 			 
 	      </h:panelGrid>
-	    </p:panel>    
-	    <p:panel header="Pessoas" id="listaPessoas" rendered="#{pessoaBean.listaPessoas != null}">
+	    </p:panel>
 	    
-	    	<p:dataTable var="pessoa" value="#{pessoaBean.listaPessoas}" rows="10"
+	    <p:panel header="Pessoas" id="listaPessoas">
+	    
+	    	<p:dataTable var="pessoa" value="#{pessoaBean.listaPessoas}" rows="10" rendered="#{pessoaBean.existePessoaCadastrada()}"
 	                 paginator="true"
 	                 rowsPerPageTemplate="5,10,15">
 		        <p:column headerText="Nome">
@@ -51,7 +53,9 @@
 		        </p:column>
 		 
 		        <p:column headerText="DataNascimento">
-		            <h:outputText value="#{pessoa.dataNascimento}" />
+		            <h:outputText value="#{pessoa.dataNascimento}">
+		            	<f:convertDateTime pattern="dd/MM/yyyy"/> 
+		            </h:outputText>
 		        </p:column>
 		 
 		        <p:column headerText="Signo">

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,6 +32,15 @@ public class PessoaBean {
 	
 	public void cadastrarPessoa() {
 		pessoaService.cadastrarPessoa(pessoa);
+		limparFormulario();
+		atualizarListaPessoas();
+		FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Successful",  "Your message: " + "Tudo certo") );
+        context.addMessage(null, new FacesMessage("Second Message", "Additional Message Detail"));
+	}
+	
+	public void limparFormulario() {
+		pessoa = new Pessoa();
 	}
 	
 	public void atualizarListaPessoas() {
@@ -51,4 +62,9 @@ public class PessoaBean {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
+	
+	public boolean existePessoaCadastrada() {
+		return listaPessoas.size() > 0;
+	}
+	
 }

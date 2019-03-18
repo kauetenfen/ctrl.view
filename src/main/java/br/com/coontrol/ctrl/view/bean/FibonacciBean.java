@@ -28,6 +28,12 @@ public class FibonacciBean {
 	
 	public void obterSequenciaFibonacci() {
 		this.sequenciaFibonacci = fibonacciService.obterSequenciaFibonacci(this.inicio, this.quantidade);
+		limparFormulario();
+	}
+	
+	public void limparFormulario() {
+		this.quantidade = null;
+		this.inicio = null;
 	}
 
 	public Integer getQuantidade() {
