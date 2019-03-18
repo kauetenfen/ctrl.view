@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+  <title></title>
+</h:head>
+
+<h:body>
+  
+	<ui:composition template="/templates/layout.xhtml">
+	<ui:define name="content">
+	
+	<h:form id="pessoaForm">
+		<p:growl id="growl" showDetail="true" sticky="true" />
+	    <p:panel header="Cadastro pessoa">
+	      <h:panelGrid columns="2" cellpadding="4">
+	        <h:outputText value="Nome: " />
+	        <p:inputText id="nome" value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="O campo 'nome' é obrigatório"/>
+	
+	        <h:outputText value="Sexo: " />
+	        <p:selectOneButton value="#{pessoaBean.pessoa.sexo}" id="sexo" required="true" requiredMessage="O campo 'sexo' é obrigatório">
+	            <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+	            <f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+	        </p:selectOneButton>
+	        
+	        
+	        <h:outputText value="Data de Nascimento: " />
+	        <p:calendar id="inline" value="#{pessoaBean.pessoa.dataNascimento}" showOn="button" required="true" requiredMessage="O campo 'data de Nascimento' é obrigatório"/>
+			 
+			 <p:commandButton id="submit" value="Salvar" actionListener="#{pessoaBean.cadastrarPessoa}" update="listaPessoas"/>
+			 
+	      </h:panelGrid>
+	    </p:panel>    
+	    <p:panel header="Pessoas" id="listaPessoas" rendered="#{pessoaBean.listaPessoas != null}">
+	    
+	    	<p:dataTable var="pessoa" value="#{pessoaBean.listaPessoas}" rows="10"
+	                 paginator="true"
+	                 rowsPerPageTemplate="5,10,15">
+		        <p:column headerText="Nome">
+		            <h:outputText value="#{pessoa.nome}" />
+		        </p:column>
+		 
+		        <p:column headerText="Sexo">
+		            <h:outputText value="#{pessoa.sexo}" />
+		        </p:column>
+		 
+		        <p:column headerText="DataNascimento">
+		            <h:outputText value="#{pessoa.dataNascimento}" />
+		        </p:column>
+		 
+		        <p:column headerText="Signo">
+		            <h:outputText value="#{pessoa.signo}" />
+		        </p:column>
+		 
+		        <f:facet name="paginatorTopLeft">
+		            <p:commandButton type="button" icon="pi pi-refresh" />
+		        </f:facet>
+		 
+		        <f:facet name="paginatorBottomRight">
+		            <p:commandButton type="button" icon="pi pi-cloud-upload" />
+		        </f:facet>
+	    	</p:dataTable>
+	    </p:panel>
+	  </h:form>
+    </ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

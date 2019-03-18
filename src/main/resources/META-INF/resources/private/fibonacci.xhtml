@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+  <title></title>
+</h:head>
+
+<h:body>
+	<ui:composition template="/templates/layout.xhtml">
+	<ui:define name="content">
+		<h:form id="fibonacciForm">
+		<p:growl id="growl" showDetail="true" sticky="true" />  
+		    <p:panel header="Consulta Fibonacci">
+		      <h:panelGrid columns="2" cellpadding="4">
+		        <h:outputText value="Inicio: " />
+		        <p:inputNumber id="nome" value="#{fibonacciBean.inicio}"  decimalPlaces="0" required="true" requiredMessage="O campo 'Inicio' é obrigatório"/>
+		
+		        <h:outputText value="Quantidade: " />
+		        <p:inputNumber id="sexo" value="#{fibonacciBean.quantidade}"  decimalPlaces="0" required="true" requiredMessage="O campo 'Quantidade' é obrigatório"/>
+		        
+		        <p:commandButton id="submit" value="Calcular" actionListener="#{fibonacciBean.obterSequenciaFibonacci()}" update="panelSequencia" />
+		      </h:panelGrid>
+		    </p:panel>
+		    		    
+		    <p:panel header="Sequência Fibonacci" id="panelSequencia">
+		    	<h:outputText value="#{fibonacciBean.sequenciaFibonacci}" />
+		    </p:panel>
+  		</h:form>
+    </ui:define>
+	</ui:composition>
+
+</h:body>
+</html>
