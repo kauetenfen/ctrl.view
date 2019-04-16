@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+  <title></title>
+  
+   <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+    <script type="text/javascript">
+        function initViz() {
+            var containerDiv = document.getElementById("vizContainer"),
+                url = "http://public.tableau.com/views/RegionalSampleWorkbook/Storms",
+                options = {
+                    hideTabs: true,
+                    onFirstInteractive: function () {
+                        console.log("Run this code when the viz has finished loading.");
+                    }
+                };
+            
+            // Create a viz object and embed it in the container div.
+            var viz = new tableau.Viz(containerDiv, url, options); 
+        }
+    </script>
+  
+  
+</h:head>
+
+<h:body onload="initViz();">		
+		<ui:composition template="/templates/layout.xhtml">
+		<ui:define name="content">
+		
+			<div id="vizContainer" style="width:800px; height:700px;"></div>
+		
+		</ui:define>
+		</ui:composition> 
+
+</h:body>
+</html>
