@@ -11,10 +11,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 	
 //	@Autowired
-//    private MyUserDetailsService myUserDetailsService;
+//	private MyUserDetailsService myUserDetailsService;
 
 	@Override
-	  protected void configure(HttpSecurity http) throws Exception {
+	protected void configure(HttpSecurity http) throws Exception {
 	    // require all requests to be authenticated except for the resources
 	    http.authorizeRequests().antMatchers("/javax.faces.resource/**", "/images/**")
 	        .permitAll().anyRequest().authenticated();
@@ -39,7 +39,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 //	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //	        auth.authenticationProvider(authenticationProvider());	        
 //	    }
-	  
+//	  
 //	  @Bean
 //	    public DaoAuthenticationProvider authenticationProvider() {
 //	        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -47,7 +47,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 //	        authProvider.setPasswordEncoder(passwordEncoder());
 //	        return authProvider;
 //	    }
-	  
+//	  
 //		@Bean
 //		public PasswordEncoder passwordEncoder() {
 //			return NoOpPasswordEncoder.getInstance();
